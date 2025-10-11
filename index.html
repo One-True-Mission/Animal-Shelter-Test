@@ -14,7 +14,26 @@
   <div class="bg" role="img" aria-label="Five fluffy puppies playing together in the grass"></div>
   <div class="shade" aria-hidden="true"></div>
 
-  <main class="wrap">
+  <!-- Hamburger -->
+  <button class="hamburger" aria-label="Open menu" aria-controls="sidemenu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- Off-canvas menu + backdrop -->
+  <div class="backdrop" data-close></div>
+  <nav id="sidemenu" class="sidemenu" aria-hidden="true">
+    <div class="menu-inner">
+      <a class="menu-item primary" href="#">
+        One True Mission | Click-to-support
+      </a>
+      <hr class="divider" />
+      <a class="menu-item" href="about.html">About Mission</a>
+      <hr class="divider" />
+      <a class="menu-item" href="happy-home.html">Happy Home</a>
+    </div>
+  </nav>
+
+  <main class="wrap" id="top">
     <!-- Hero / CTA -->
     <header class="hero" aria-labelledby="site-title">
       <h1 id="site-title">Find Your New Best Friend</h1>
@@ -26,7 +45,7 @@
       </a>
     </header>
 
-    <!-- About bubble (≈10% transparent) -->
+    <!-- About bubble -->
     <section class="bubble" aria-labelledby="about-title">
       <h2 id="about-title">About This Rescue Effort</h2>
       <p>
