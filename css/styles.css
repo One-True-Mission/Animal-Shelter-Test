@@ -182,3 +182,79 @@ body {
   .hero{ padding: 16vh var(--pad) 8vh; }
   .bubble::after{ left: 24px; }
 }
+/* ===== Off-canvas left menu ===== */
+.hamburger{
+  position: fixed;
+  top: 14px; left: 14px;
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  z-index: 50;
+}
+.hamburger span{
+  display: block;
+  width: 20px; height: 2px;
+  background: #fff;
+  margin: 3px 0;
+  border-radius: 2px;
+}
+
+.backdrop{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease;
+  z-index: 49;
+}
+
+.sidemenu{
+  position: fixed;
+  top: 0; left: 0;
+  height: 100lvh;
+  width: min(88vw, 320px);
+  transform: translateX(-100%);
+  transition: transform .22s ease;
+  background: rgba(15,23,42,.92);           /* slate-900 w/ transparency */
+  color: #fff;
+  backdrop-filter: blur(10px);
+  box-shadow: 8px 0 30px rgba(0,0,0,.45);
+  z-index: 51;
+  overflow-y: auto;
+}
+@supports not (height: 100lvh) {
+  .sidemenu{ height: 100svh; }
+}
+
+.sidemenu.open{ transform: translateX(0); }
+.backdrop.show{ opacity: 1; pointer-events: auto; }
+
+.menu-inner{ padding: 16px; }
+.menu-item{
+  display: block;
+  padding: 14px 12px;
+  border-radius: 10px;
+  color: #f8fafc;
+  text-decoration: none;
+  font-weight: 600;
+}
+.menu-item:hover{ background: rgba(255,255,255,.08); }
+.menu-item.primary{
+  background: linear-gradient(180deg, rgba(34,197,94,.95), rgba(22,163,74,.95));
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.2);
+  text-align: center;
+}
+.menu-item.primary:hover{ filter: brightness(1.02); }
+
+.divider{
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+  margin: 10px 0;
+}
