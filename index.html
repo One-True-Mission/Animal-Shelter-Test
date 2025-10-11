@@ -23,9 +23,12 @@
   <div class="backdrop" data-close></div>
   <nav id="sidemenu" class="sidemenu" aria-hidden="true">
     <div class="menu-inner">
-      <a class="menu-item primary" href="#">
+      <!-- Primary supports link to Shopify -->
+      <a class="menu-item primary" href="https://1x2f63-7u.myshopify.com/" target="_blank" rel="noopener">
         One True Mission | Click-to-support
       </a>
+      <hr class="divider" />
+      <a class="menu-item" href="index.html">Home</a>
       <hr class="divider" />
       <a class="menu-item" href="about.html">About Mission</a>
       <hr class="divider" />
@@ -39,10 +42,28 @@
       <h1 id="site-title">Find Your New Best Friend</h1>
       <p class="tagline">Adopt, foster, or support a local shelter today.</p>
 
-      <!-- Link the button later: replace the href with your adoption URL -->
-      <a class="cta" href="#" aria-label="Go to adoption or rescue page">
-        Adopt a Puppy • Help Rescue an Animal
-      </a>
+      <!-- CTA with dropdown -->
+      <div class="cta-group">
+        <button id="adoptCta"
+                class="cta has-caret"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="adoptMenu">
+          Adopt a Puppy • Help Rescue an Animal
+        </button>
+
+        <div id="adoptMenu" class="cta-menu" role="menu" aria-hidden="true">
+          <a role="menuitem" class="cta-item"
+             href="https://mansfieldpetadoptions.spread.name/?page=1" target="_blank" rel="noopener">
+            Adopt Mansfield, TX
+          </a>
+          <a role="menuitem" class="cta-item"
+             href="https://www.gptx.org/Departments/Animal-Services/Prairie-Paws-Adoption-Center-Formerly-Grand-Prairie-Animal-Services-Adoption-Center/Animals-at-Our-Facility"
+             target="_blank" rel="noopener">
+            Adopt Grand Prairie
+          </a>
+        </div>
+      </div>
     </header>
 
     <!-- About bubble -->
@@ -54,7 +75,7 @@
         fostering easier, and encourage direct support for the organizations doing the daily work.
       </p>
       <p>
-        When you click the button above, you’ll be taken to our partner page where you can browse
+        When you click the button above, you’ll be taken to partner pages where you can browse
         adoptable pets, start a foster application, or learn how to donate supplies and funds.
         If you’re not ready to adopt, that’s okay—sharing this page helps more animals get seen.
       </p>
