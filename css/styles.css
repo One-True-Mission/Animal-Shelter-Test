@@ -1,4 +1,4 @@
-/* ---------- styles.css (fixed) ---------- */
+/* ---------- styles.css (final) ---------- */
 :root{
   --maxw: 980px;
   --pad: 18px;
@@ -16,14 +16,15 @@
   /* Bubble now black ~30% transparent (0.70 opacity) */
   --bubble: rgba(0,0,0,0.70);
 
-  /* Slight overall darkening for readability */
+  /* (unused now—overlay handled by .shade) */
   --shade: rgba(0,0,0,.28);
 
   /* Background image controls */
   --bg-url: url("../assets/puppies-hero.jpg");
-  --bg-pos: 50% 50%;
-  /* Use 'contain' to show entire image; switch to 'cover' if you want edge-to-edge */
-  --bg-fit: contain;
+  /* keep animals in view */
+  --bg-pos: 50% 72%;
+  /* fill screen on all phones */
+  --bg-fit: cover;
 }
 
 * { box-sizing: border-box; }
@@ -34,8 +35,8 @@ body {
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   line-height: 1.5;
   color: var(--ink-on-dark);
-  /* Soft “sky-to-grass” gradient behind everything (won’t show through .bg now, but kept for safety) */
-  background: linear-gradient(to bottom, #e9f3dc 0%, #b6d79d 100%);
+  /* safe fallback; .bg covers it */
+  background: #000;
   overscroll-behavior: none;
 }
 
@@ -47,22 +48,12 @@ body {
   width: 100lvw;
   height: 100lvh;
 
-  /* IMAGE ON TOP, GRADIENT BEHIND — removes black bars on header/footer/sides */
-  background-image:
-    var(--bg-url),
-    linear-gradient(to bottom, #e9f3dc 0%, #b6d79d 100%);
-  background-position:
-    var(--bg-pos),
-    50% 50%;
-  background-repeat:
-    no-repeat,
-    no-repeat;
-  background-size:
-    var(--bg-fit),
-    cover;
-
-  /* remove black fallback so gradient shows */
-  /* background-color: #000; */
+  /* pure image; no color banding */
+  background-image: var(--bg-url);
+  background-position: var(--bg-pos);
+  background-repeat: no-repeat;
+  background-size: var(--bg-fit);
+  background-color: #000; /* harmless fallback */
 
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
@@ -78,11 +69,22 @@ body {
   }
 }
 
-/* Subtle global shade for contrast on top of photo */
+/* Professional top/bottom fades for readability (transparent mid) */
 .shade{
   position: fixed;
   inset: 0;
-  background: var(--shade);
+  background:
+    /* bottom fade under hero text */
+    linear-gradient(to top,
+      rgba(0,0,0,0.55) 0%,
+      rgba(0,0,0,0.38) 22%,
+      rgba(0,0,0,0.18) 45%,
+      rgba(0,0,0,0.00) 60%),
+    /* top fade under status bar */
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.35) 0%,
+      rgba(0,0,0,0.18) 8%,
+      rgba(0,0,0,0.00) 18%);
   z-index: -1;
 }
 
@@ -319,3 +321,7 @@ body {
   text-align: center;
 }
 .cta-item:hover{ filter: brightness(1.05); }
+
+/* Aspect-ratio tweaks so subjects stay framed nicely */
+@media (max-aspect-ratio: 9/16) { :root { --bg-pos: 50% 76%; } }
+@media (min-aspect-ratio: 16/9) { :root { --bg-pos: 50% 68%; } }
