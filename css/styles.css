@@ -1,4 +1,4 @@
-/* ---------- styles.css (final desktop+mobile + glass card) ---------- */
+/* ---------- styles.css (final desktop+mobile + glass card, centered text) ---------- */
 :root{
   --maxw: 980px;
   --pad: 18px;
@@ -136,7 +136,7 @@ body {
   padding: 22px 22px 18px;
   position: relative;
 
-  /* Lowered so more hero photo shows initially */
+  /* LOWERED – exact control */
   margin-top: 39vh;
 }
 .bubble::before{
@@ -189,15 +189,20 @@ body {
   background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
   opacity: .9;
 }
-.bubble p, .bubble ul{
+
+/* Centered, symmetric text inside the bubble */
+.bubble p,
+.bubble ul{
   max-width: 70ch;
   margin-left: auto;
   margin-right: auto;
-  color: #eef2f1; /* warmer than pure white for premium look */
+  color: #eef2f1;
+  text-align: center;         /* center align text */
 }
 .bubble .highlights{
   list-style: "🐾  ";
-  padding-left: 1.2ch;
+  list-style-position: inside; /* keep bullets centered with text */
+  padding-left: 0;             /* remove left offset so it centers perfectly */
   margin: 12px auto 6px;
 }
 .bubble .footnote{
@@ -214,13 +219,10 @@ body {
   opacity: .9;
 }
 
-/* Small screens */
+/* Small screens (no margin-top override, so phone honors 39vh) */
 @media (max-width: 480px){
   .hero{ padding: 16vh var(--pad) 8vh; }
-  .bubble{
-    padding: 18px 16px 14px;
-    margin-top: clamp(90px, 20vh, 220px);
-  }
+  .bubble{ padding: 18px 16px 14px; }
   .bubble::before{
     backdrop-filter: blur(8px) saturate(120%);
     -webkit-backdrop-filter: blur(8px) saturate(120%);
