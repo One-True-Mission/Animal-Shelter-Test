@@ -137,7 +137,7 @@ body {
   position: relative;
 
   /* LOWERED – exact control */
-  margin-top: 39vh;
+  margin-top: 36vh;
 }
 .bubble::before{
   content: "";
