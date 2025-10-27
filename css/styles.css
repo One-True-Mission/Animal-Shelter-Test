@@ -34,7 +34,8 @@ body {
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   line-height: 1.5;
   color: var(--ink-on-dark);
- background: linear-gradient(to bottom, #e9f3dc 0%, #b6d79d 100%);
+  /* Soft “sky-to-grass” gradient behind everything (won’t show through .bg now, but kept for safety) */
+  background: linear-gradient(to bottom, #e9f3dc 0%, #b6d79d 100%);
   overscroll-behavior: none;
 }
 
@@ -45,11 +46,24 @@ body {
   top: 0; left: 0;
   width: 100lvw;
   height: 100lvh;
-  background-image: var(--bg-url);
-  background-position: var(--bg-pos);
-  background-repeat: no-repeat;
-  background-size: var(--bg-fit);
-  background-color: #000;
+
+  /* IMAGE ON TOP, GRADIENT BEHIND — removes black bars on header/footer/sides */
+  background-image:
+    var(--bg-url),
+    linear-gradient(to bottom, #e9f3dc 0%, #b6d79d 100%);
+  background-position:
+    var(--bg-pos),
+    50% 50%;
+  background-repeat:
+    no-repeat,
+    no-repeat;
+  background-size:
+    var(--bg-fit),
+    cover;
+
+  /* remove black fallback so gradient shows */
+  /* background-color: #000; */
+
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   backface-visibility: hidden;
@@ -182,6 +196,7 @@ body {
   .hero{ padding: 16vh var(--pad) 8vh; }
   .bubble::after{ left: 24px; }
 }
+
 /* ===== Off-canvas left menu ===== */
 .hamburger{
   position: fixed;
@@ -258,6 +273,7 @@ body {
   background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
   margin: 10px 0;
 }
+
 /* ===== CTA dropdown ===== */
 .cta-group{
   position: relative;
