@@ -23,7 +23,7 @@
   --bg-url: url("../assets/puppies-hero.jpg");
   /* keep animals in view */
   --bg-pos: 50% 72%;
-  /* fill screen on all devices */
+  /* default fill */
   --bg-fit: cover;
 }
 
@@ -325,6 +325,28 @@ body {
 }
 .cta-item:hover{ filter: brightness(1.05); }
 
-/* Aspect-ratio tweaks so subjects stay framed nicely */
-@media (max-aspect-ratio: 9/16) { :root { --bg-pos: 50% 76%; } }
-@media (min-aspect-ratio: 16/9) { :root { --bg-pos: 50% 68%; } }
+/* ===== Responsive background framing ===== */
+
+/* Taller screens (phones) – fill top-to-bottom */
+@media (max-aspect-ratio: 9/16) { 
+  :root {
+    --bg-pos: 50% 76%;
+    --bg-fit: cover;
+  }
+}
+
+/* Standard to wide desktops – natural fit with light bleed (~105%) */
+@media (min-aspect-ratio: 16/9) { 
+  :root {
+    --bg-pos: 50% 70%;
+    --bg-fit: 105% auto;  /* between contain & cover for perfect framing */
+  }
+}
+
+/* Extremely wide monitors (ultrawide or 21:9) – keep proportions centered */
+@media (min-aspect-ratio: 21/9) { 
+  :root {
+    --bg-pos: 50% 68%;
+    --bg-fit: 110% auto;
+  }
+}
