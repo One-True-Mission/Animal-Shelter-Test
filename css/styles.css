@@ -34,7 +34,7 @@ body {
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   line-height: 1.5;
   color: var(--ink-on-dark);
-  background: #000; /* letterbox behind 'contain' */
+ background: linear-gradient(to bottom, #e9f3dc 0%, #b6d79d 100%);
   overscroll-behavior: none;
 }
 
