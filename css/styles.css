@@ -137,7 +137,7 @@ body {
   position: relative;
 
   /* Lowered so more hero photo shows initially */
-  margin-top: clamp(140px, 27vh, 280px);
+  margin-top: clamp(120px, 30vh, 320px);
 }
 .bubble::before{
   content: "";
