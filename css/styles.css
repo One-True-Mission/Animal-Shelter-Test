@@ -339,7 +339,7 @@ body {
 @media (min-aspect-ratio: 16/9) { 
   :root {
     --bg-pos: 50% 70%;
-    --bg-fit: 102% auto;  /* between contain & cover for perfect framing */
+    --bg-fit: 110% auto;  /* between contain & cover for perfect framing */
   }
 }
 
