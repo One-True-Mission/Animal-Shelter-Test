@@ -1,4 +1,4 @@
-/* ---------- styles.css (final) ---------- */
+/* ---------- styles.css (final desktop+mobile fix) ---------- */
 :root{
   --maxw: 980px;
   --pad: 18px;
@@ -23,7 +23,7 @@
   --bg-url: url("../assets/puppies-hero.jpg");
   /* keep animals in view */
   --bg-pos: 50% 72%;
-  /* fill screen on all phones */
+  /* fill screen on all devices */
   --bg-fit: cover;
 }
 
@@ -40,13 +40,15 @@ body {
   overscroll-behavior: none;
 }
 
-/* ===== Fixed background that does NOT zoom on scroll =====
-   Lock to layout viewport to avoid iOS URL bar height changes. */
+/* ===== Fixed background that fills desktop & mobile =====
+   Desktop-safe defaults (100vw/100vh), prefer lv* units only when available. */
 .bg{
   position: fixed;
   top: 0; left: 0;
-  width: 100lvw;
-  height: 100lvh;
+
+  /* desktop-safe defaults */
+  width: 100vw;
+  height: 100vh;
 
   /* pure image; no color banding */
   background-image: var(--bg-url);
@@ -61,11 +63,12 @@ body {
   will-change: transform;
   z-index: -2;
 }
-/* Fallback for browsers without lvh/lvw support */
-@supports not (height: 100lvh) {
+
+/* Prefer modern logical viewport units (great for iOS) */
+@supports (height: 100lvh) {
   .bg{
-    width: 100svw;
-    height: 100svh;  /* stable viewport units help prevent “zoom” */
+    width: 100lvw;
+    height: 100lvh;
   }
 }
 
