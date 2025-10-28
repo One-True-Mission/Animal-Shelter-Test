@@ -326,16 +326,21 @@ body {
 /* Placeholder looks like a normal white item (no special styling) */
 .menu-item.placeholder{}
 
-/* Slim left accent for the current page */
+/* Slim left accent for the current page — pushed left, text cleared */
 .menu-item[aria-current="page"]{
   background: rgba(255,255,255,.06);
+  padding-left: 26px;                 /* add space so text never overlaps the bar */
 }
 .menu-item[aria-current="page"]::before{
   content: "";
-  position: absolute; left: 10px; top: 10px; bottom: 10px;
-  width: 4px; border-radius: 4px;
+  position: absolute;
+  left: 6px;                          /* push accent closer to the item’s left edge */
+  top: 8px;
+  bottom: 8px;
+  width: 4px;
+  border-radius: 6px;
   background: linear-gradient(180deg, var(--accent-green), #16a34a);
-  box-shadow: 0 0 0 2px rgba(34,197,94,.15), 0 0 12px rgba(34,197,94,.35);
+  box-shadow: 0 0 0 2px rgba(34,197,94,.12), 0 0 10px rgba(34,197,94,.28);
 }
 
 .divider{
