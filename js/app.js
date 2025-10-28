@@ -39,6 +39,12 @@
     }
   });
 
+  // Prevent navigation on placeholder/disabled menu links
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a.menu-item.disabled');
+    if (a) e.preventDefault();
+  });
+
   // ----- CTA dropdown -----
   const ctaBtn = document.getElementById('adoptCta');
   const ctaMenu = document.getElementById('adoptMenu');
