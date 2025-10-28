@@ -58,7 +58,7 @@
       <h1 id="site-title">Find Your New Best Friend</h1>
       <p class="tagline">Adopt, foster, or support a local shelter today.</p>
 
-      <!-- CTA with dropdown -->
+      <!-- CTA with nested dropdown -->
       <div class="cta-group">
         <button id="adoptCta"
                 class="cta has-caret"
@@ -68,16 +68,38 @@
           Make an Impact 🐾 Find Your Rescue
         </button>
 
+        <!-- LEVEL 1 MENU -->
         <div id="adoptMenu" class="cta-menu" role="menu" aria-hidden="true">
-          <a role="menuitem" class="cta-item"
-             href="https://mansfieldpetadoptions.spread.name/?page=1" target="_blank" rel="noopener">
-            Adopt Mansfield, TX
-          </a>
-          <a role="menuitem" class="cta-item"
-             href="https://www.gptx.org/Departments/Animal-Services/Prairie-Paws-Adoption-Center-Formerly-Grand-Prairie-Animal-Services-Adoption-Center/Animals-at-Our-Facility"
-             target="_blank" rel="noopener">
-            Adopt Grand Prairie
-          </a>
+          <!-- Dallas / Fort Worth group toggle -->
+          <button id="dfwToggle"
+                  type="button"
+                  class="cta-item has-caret menu-caret"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="dfwMenu">
+            Dallas / Fort Worth
+          </button>
+
+          <!-- LEVEL 2 SUBMENU: DFW cities -->
+          <div id="dfwMenu" class="cta-submenu" role="menu" aria-hidden="true">
+            <a class="cta-subitem" role="menuitem" href="https://www.arlingtontx.gov/City-Services/Animals-Pets/Adoptable-Animals" target="_blank" rel="noopener">Arlington</a>
+            <a class="cta-subitem" role="menuitem" href="https://bedallas90.org/home/pets/" target="_blank" rel="noopener">Dallas</a>
+            <a class="cta-subitem" role="menuitem" href="https://www.petfinder.com/search/pets-for-adoption/?shelter_id%5B0%5D=TX265&sort%5B0%5D=recently_added" target="_blank" rel="noopener">Euless</a>
+            <a class="cta-subitem" role="menuitem" href="https://www.hsnt.org/saxe-forte-adoption-center-fort-worth" target="_blank" rel="noopener">Fort Worth</a>
+            <a class="cta-subitem" role="menuitem" href="https://www.hsnt.org/keller-regional" target="_blank" rel="noopener">Keller</a>
+            <a class="cta-subitem" role="menuitem" href="https://www.cedarhilltx.com/1293/Adoption" target="_blank" rel="noopener">Cedar Hill</a>
+            <a class="cta-subitem" role="menuitem" href="https://www.dfwhumane.com/adopt" target="_blank" rel="noopener">Irving (DFW Humane)</a>
+            <a class="cta-subitem" role="menuitem" href="https://irvingtx.gov/animal-services_adoptables" target="_blank" rel="noopener">Irving (City)</a>
+            <a class="cta-subitem" role="menuitem" href="https://mini-mutts.org/adoptable-pets/" target="_blank" rel="noopener">Grand Prairie (Mini Mutts)</a>
+            <a class="cta-subitem" role="menuitem" href="https://www.gptx.org/Departments/Animal-Services/Prairie-Paws-Adoption-Center-Formerly-Grand-Prairie-Animal-Services-Adoption-Center/Animals-at-Our-Facility" target="_blank" rel="noopener">Grand Prairie (Prairie Paws)</a>
+            <a class="cta-subitem" role="menuitem" href="https://mansfieldpetadoptions.spread.name/?page=1" target="_blank" rel="noopener">Mansfield</a>
+            <a class="cta-subitem" role="menuitem" href="https://www.eastlakepetorphanage.com/" target="_blank" rel="noopener">East Lake</a>
+          </div>
+
+          <!-- Future regions (disabled placeholders) -->
+          <button type="button" class="cta-item disabled" title="Coming soon">Austin (coming soon)</button>
+          <button type="button" class="cta-item disabled" title="Coming soon">San Antonio (coming soon)</button>
+          <button type="button" class="cta-item disabled" title="Coming soon">Houston (coming soon)</button>
         </div>
       </div>
     </header>
@@ -94,13 +116,12 @@
 
       <p>
         This mission was created to make helping animals easier and more impactful.
-        Whether you’re ready to adopt, already have fur babies, or simply want to be part 
+        Whether you’re ready to adopt, already have fur babies, or simply want to be part
         of something meaningful, you’ll find everything you need right here on this Mission site.
       </p>
 
       <p>
-      Together, we can make an Impact 
-      that lasts a Lifetime.
+        Together, we can make an impact that lasts a lifetime.
       </p>
     </section>
 
