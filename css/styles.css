@@ -282,6 +282,27 @@ body {
 .backdrop.show{ opacity: 1; pointer-events: auto; }
 
 .menu-inner{ padding: 16px; }
+
+/* NEW: Off-canvas header label */
+.menu-header{
+  display: block;
+  padding: 8px 2px 10px;
+  color: #e5e7eb;
+  opacity: .95;
+}
+.menu-header .brand{
+  display: block;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: .2px;
+  color: #f8fafc;
+}
+.menu-header .sub{
+  display: block;
+  font-size: 13px;
+  opacity: .85;
+}
+
 .menu-item{
   display: block;
   padding: 14px 12px;
@@ -291,19 +312,31 @@ body {
   font-weight: 600;
 }
 .menu-item:hover{ background: rgba(255,255,255,.08); }
+
+/* UPDATED: Primary CTA in menu */
 .menu-item.primary{
-  background: linear-gradient(180deg, rgba(34,197,94,.95), rgba(22,163,74,.95));
+  background: linear-gradient(180deg, rgba(34,197,94,.98), rgba(22,163,74,.98));
   color: #fff;
-  border: 1px solid rgba(255,255,255,.2);
+  border: 1px solid rgba(255,255,255,.22);
   text-align: center;
+  box-shadow: 0 10px 28px rgba(0,0,0,.28) inset, 0 10px 28px rgba(0,0,0,.24);
 }
 .menu-item.primary:hover{ filter: brightness(1.02); }
+
+/* NEW: Disabled/placeholder item */
+.menu-item.disabled{
+  pointer-events: none;
+  opacity: .55;
+  filter: grayscale(.08);
+  border: 1px dashed rgba(255,255,255,.20);
+  text-align: center;
+}
 
 .divider{
   height: 1px;
   border: 0;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
-  margin: 10px 0;
+  margin: 10px 0 12px;
 }
 
 /* ===== CTA dropdown ===== */
