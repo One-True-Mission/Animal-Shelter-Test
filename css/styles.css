@@ -184,17 +184,17 @@ body {
   opacity: .9;
 }
 
-/* Centered, symmetric text inside the bubble */
+/* Centered text inside the bubble */
 .bubble p,
 .bubble ul{
-  max-width: 60ch;              /* was 70ch — balances lines better */
+  max-width: 60ch;
   margin-left: auto;
   margin-right: auto;
   color: #eef2f1;
   text-align: center;
-  line-height: 1.6;             /* smoother wrap */
+  line-height: 1.6;
   letter-spacing: 0.1px;
-  text-wrap: balance;           /* modern browsers: avoid one-word last lines */
+  text-wrap: balance;
 }
 .bubble .highlights{
   list-style: "🐾  ";
@@ -332,12 +332,12 @@ body {
 /* Slim left accent for the current page — pushed left, text cleared */
 .menu-item[aria-current="page"]{
   background: rgba(255,255,255,.06);
-  padding-left: 26px;                 /* add space so text never overlaps the bar */
+  padding-left: 26px;
 }
 .menu-item[aria-current="page"]::before{
   content: "";
   position: absolute;
-  left: 4px;                          /* push accent closer to the item’s left edge */
+  left: 4px;
   top: 8px;
   bottom: 8px;
   width: 4px;
@@ -365,16 +365,53 @@ body {
 }
 .cta-menu{
   position: absolute; left: 50%; transform: translateX(-50%);
-  top: calc(100% + 10px); min-width: 260px;
+  top: calc(100% + 10px); min-width: 280px;
   background: var(--cta-bg); color: #fff; border-radius: 14px;
-  box-shadow: 0 14px 40px rgba(0,0,0,.35); padding: 8px; z-index: 5; display: none;
+  box-shadow: 0 14px 40px rgba(0,0,0,.35); padding: 10px; z-index: 5; display: none;
 }
 .cta-menu.show{ display: block; }
+
 .cta-item{
-  display: block; padding: 12px 14px; margin: 4px 0; border-radius: 10px;
-  color: #fff; text-decoration: none; font-weight: 700; text-align: center;
+  display: block; padding: 12px 14px; margin: 6px 0; border-radius: 12px;
+  color: #fff; text-decoration: none; font-weight: 800; text-align: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.18);
 }
 .cta-item:hover{ filter: brightness(1.05); }
+
+.cta-item.disabled{
+  opacity: .55; filter: grayscale(.1); cursor: not-allowed;
+}
+
+/* Nested submenu (DFW cities) */
+.menu-caret{ text-align: center; }
+.cta-item[aria-expanded="true"].menu-caret::after{
+  transform: translateY(-60%) rotate(-135deg);   /* flip caret when open */
+}
+
+.cta-submenu{
+  display: none;
+  margin: 6px 0 4px;
+  padding: 8px;
+  background: rgba(0,0,0,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 12px;
+}
+.cta-submenu.show{ display: block; }
+
+.cta-subitem{
+  display: block;
+  margin: 4px 0;
+  padding: 11px 12px;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.18);
+  font-weight: 700;
+}
+.cta-subitem:hover{ filter: brightness(1.08); }
 
 /* ===== Responsive background framing ===== */
 @media (max-aspect-ratio: 9/16) {
