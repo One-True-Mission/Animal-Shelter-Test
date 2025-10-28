@@ -334,7 +334,7 @@ body {
 .menu-item[aria-current="page"]::before{
   content: "";
   position: absolute;
-  left: 6px;                          /* push accent closer to the item’s left edge */
+  left: 4px;                          /* push accent closer to the item’s left edge */
   top: 8px;
   bottom: 8px;
   width: 4px;
