@@ -42,7 +42,7 @@ body {
   line-height: 1.5;
   color: var(--ink-on-dark);
   background: #000;
-  overscroll-behavior-x: contain;   /* contain sideways fling */
+  overscroll-behavior-x: contain;
   overscroll-behavior-y: none;
   touch-action: pan-y;              /* allow vertical panning only */
   -webkit-text-size-adjust: 100%;
@@ -52,7 +52,7 @@ body {
 /* ===== Fixed background ===== */
 .bg{
   position: fixed;
-  inset: 0;                         /* safer than 100vw/100vh on iOS */
+  inset: 0;
   background-image: var(--bg-url);
   background-position: var(--bg-pos);
   background-repeat: no-repeat;
@@ -63,10 +63,7 @@ body {
   will-change: transform;
   z-index: -2;
 }
-/* Keep for browsers that support lv* units (no harm to leave) */
-@supports (height: 100lvh) {
-  .bg{ inset: 0; }
-}
+@supports (height: 100lvh) { .bg{ inset: 0; } }
 
 .shade{
   position: fixed;
@@ -89,7 +86,7 @@ body {
   min-height: 100svh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  overflow-x: clip;                 /* belt & suspenders – clip any stray width */
+  overflow-x: clip;  /* clip any stray width */
 }
 
 /* ===== Hero / CTA ===== */
@@ -277,7 +274,7 @@ body {
 
 /* Menu items */
 .menu-item{
-  position: relative; /* for the current-page bar */
+  position: relative;
   display: block;
   padding: 14px 12px;
   border-radius: 10px;
@@ -317,12 +314,10 @@ body {
 }
 
 /* ===== CTA dropdown ===== */
-
-/* keep the wrapper sized to the button so children can be 100% width */
 .cta-group{
   position: relative;
   display: inline-block;
-  width: max-content; /* ensures the group width equals the button’s width */
+  width: max-content; /* equals the button’s width */
 }
 
 .has-caret{ position: relative; padding-right: 38px; }
@@ -341,7 +336,7 @@ body {
   position: absolute;
   top: calc(100% + 10px);
   left: 0;
-  right: 0;          /* width = wrapper (button) */
+  right: 0;
   width: 100%;
   max-height: 70vh;
 
@@ -365,12 +360,10 @@ body {
   animation: ctaFadeIn .28s ease forwards;
 }
 
-/* Optional: tidy scrollbar in WebKit */
 .cta-menu::-webkit-scrollbar{ width: 10px; }
 .cta-menu::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.35); border-radius: 10px; }
 .cta-menu::-webkit-scrollbar-track{ background: transparent; }
 
-/* menu items */
 .cta-item{
   position: relative;
   display: block;
@@ -391,13 +384,11 @@ body {
   filter: brightness(1.03);
 }
 
-/* DFW caret spacing */
 .cta-item.menu-caret{ padding-right: 48px; }
 .cta-item.menu-caret::after{ right: 18px; }
 
 .cta-item.disabled{ opacity: .55; filter: grayscale(.1); cursor: not-allowed; }
 
-/* Submenu */
 .menu-caret{ text-align: center; }
 .cta-item[aria-expanded="true"].menu-caret::after{
   transform: translateY(-60%) rotate(-135deg);
@@ -431,13 +422,11 @@ body {
   filter: brightness(1.05);
 }
 
-/* Glow ring on active/expanded button */
 .cta:focus-visible,
 .cta[aria-expanded="true"]{
   box-shadow: 0 0 0 6px rgba(34,197,94,0.28), var(--shadow);
 }
 
-/* Opening animation */
 @keyframes ctaFadeIn{
   from{ opacity: 0; transform: translateY(-6px) scale(.98); }
   to  { opacity: 1; transform: translateY(0)      scale(1); }
@@ -454,10 +443,9 @@ body {
   :root { --bg-pos: 50% 68%; --bg-fit: 110% auto; }
 }
 
-/* ---------- Centered, balanced copy (Option B) ---------- */
-.bubble h2{
-  text-wrap: balance;
-}
+/* ---------- Centered, balanced copy (Option B — locked lines) ---------- */
+.bubble h2{ text-wrap: balance; }
+
 .bubble p{
   text-align: center;
   line-height: 1.65;
@@ -465,29 +453,25 @@ body {
   hyphens: none;
   text-wrap: pretty;
   max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-wrap: anywhere;  /* safety for non-balanced paragraphs */
+  word-break: normal;
 }
 
-/* Lock each intended line exactly as PC renders, without causing sideways scroll */
+/* Keep PC-perfect line breaks on all devices */
+.balanced{
+  display: grid;              /* center children */
+  justify-items: center;
+}
 .balanced .line{
   display: block;
   white-space: nowrap;
   word-break: keep-all;
-}
-/* --- Prevent mobile overflow from locked lines --- */
-.balanced { display: grid; justify-items: center; }       /* keep paragraphs centered */
-.balanced .line { white-space: nowrap; max-width: 100%; } /* desktop/tablet lock */
-
-@media (max-width: 480px){
-  /* On phones, allow wrapping so no paragraph can widen the page */
-  .balanced .line { white-space: normal; display: inline; }
-  /* tiny safety nudge so the lines never push width */
-  .balanced { font-size: clamp(15px, 3.9vw, 18px); }
+  max-width: 100%;
 }
 
-/* Optional extra safety: never let long words force overflow */
-.bubble p { overflow-wrap: anywhere; word-break: normal; }
-
-/* Tiny, graceful type flex on narrow phones so lines never overflow */
+/* Type flex so locked lines never overflow narrow phones */
 @media (max-width: 420px){
   .balanced{ font-size: clamp(15px, 3.9vw, 18px); }
 }
@@ -495,14 +479,11 @@ body {
   .balanced{ font-size: clamp(16px, 3.6vw, 18px); }
 }
 
-/* Paragraph rhythm */
+/* Paragraph rhythm & last-line helper */
 .bubble p + p{ margin-top: 14px; }
-
-/* Keep very last line intact if ever needed */
 .no-widow{ white-space: nowrap; }
 
 /* ---------- FINAL MOBILE CENTERING & SAFE-AREA FIX ---------- */
-/* Ensure key blocks are truly centered & contained */
 .wrap,
 .hero,
 .bubble,
@@ -514,13 +495,8 @@ body {
   text-align: center;
 }
 
-/* Keep CTA group perfectly centered under the tagline */
-.cta-group{
-  margin-left: auto;
-  margin-right: auto;
-}
+.cta-group{ margin-left: auto; margin-right: auto; }
 
-/* Respect iOS/Android safe areas and keep equal visual gutters */
 @supports (padding-left: max(0px)) {
   .hero,
   .bubble,
@@ -530,18 +506,16 @@ body {
   }
 }
 
-/* Extra safety on narrow phones to avoid any width creep */
 @media (max-width: 600px){
   .hero,
-  .bubble{ padding-left: max(var(--gutter), env(safe-area-inset-left));
-           padding-right: max(var(--gutter), env(safe-area-inset-right)); }
-
+  .bubble{
+    padding-left: max(var(--gutter), env(safe-area-inset-left));
+    padding-right: max(var(--gutter), env(safe-area-inset-right));
+  }
   .bg, .shade{
     left: 0; right: 0;
     width: 100%;
     max-width: 100%;
   }
-
-  /* Avoid iOS transform rounding drift when zooming */
-  .bg{ transform: none; }
+  .bg{ transform: none; } /* avoid iOS rounding drift when zooming */
 }
