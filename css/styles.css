@@ -28,7 +28,9 @@
 }
 
 * { box-sizing: border-box; }
-html, body { height: 100%; }
+
+/* --- Lock layout to vertical only (no sideways scroll) --- */
+html, body { height: 100%; overflow-x: hidden; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
@@ -36,14 +38,16 @@ body {
   line-height: 1.5;
   color: var(--ink-on-dark);
   background: #000;
-  overscroll-behavior: none;
+  overscroll-behavior-x: contain;   /* contain sideways fling */
+  overscroll-behavior-y: none;
+  touch-action: pan-y;              /* allow vertical panning only */
+  -webkit-text-size-adjust: 100%;
 }
 
 /* ===== Fixed background ===== */
 .bg{
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  inset: 0;                         /* safer than 100vw/100vh on iOS */
   background-image: var(--bg-url);
   background-position: var(--bg-pos);
   background-repeat: no-repeat;
@@ -54,8 +58,9 @@ body {
   will-change: transform;
   z-index: -2;
 }
+/* Keep for browsers that support lv* units (no harm to leave) */
 @supports (height: 100lvh) {
-  .bg{ width: 100lvw; height: 100lvh; }
+  .bg{ inset: 0; }
 }
 
 .shade{
@@ -79,6 +84,7 @@ body {
   min-height: 100svh;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  overflow-x: clip;                 /* belt & suspenders – clip any stray width */
 }
 
 /* ===== Hero / CTA ===== */
@@ -330,7 +336,7 @@ body {
   position: absolute;
   top: calc(100% + 10px);
   left: 0;
-  right: 0;
+  right: 0;          /* width = wrapper (button) */
   width: 100%;
   max-height: 70vh;
 
@@ -447,29 +453,26 @@ body {
 .bubble h2{
   text-wrap: balance;
 }
-
 .bubble p{
   text-align: center;
   line-height: 1.65;
   letter-spacing: 0.1px;
   hyphens: none;
   text-wrap: pretty;
-  max-width: 60ch;          /* keep measure consistent across devices */
+  max-width: 60ch;
 }
 
-/* Lock each intended line exactly as PC renders */
+/* Lock each intended line exactly as PC renders, without causing sideways scroll */
 .balanced .line{
-  display: block;           /* each line sits on its own row */
-  white-space: nowrap;      /* no mid-line wrapping on mobile */
-  word-break: keep-all;     /* don’t break words */
+  display: block;
+  white-space: nowrap;
+  word-break: keep-all;
 }
 
 /* Tiny, graceful type flex on narrow phones so lines never overflow */
 @media (max-width: 420px){
   .balanced{ font-size: clamp(15px, 3.9vw, 18px); }
 }
-
-/* Slightly larger phones */
 @media (421px <= width <= 540px){
   .balanced{ font-size: clamp(16px, 3.6vw, 18px); }
 }
