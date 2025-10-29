@@ -473,6 +473,19 @@ body {
   white-space: nowrap;
   word-break: keep-all;
 }
+/* --- Prevent mobile overflow from locked lines --- */
+.balanced { display: grid; justify-items: center; }       /* keep paragraphs centered */
+.balanced .line { white-space: nowrap; max-width: 100%; } /* desktop/tablet lock */
+
+@media (max-width: 480px){
+  /* On phones, allow wrapping so no paragraph can widen the page */
+  .balanced .line { white-space: normal; display: inline; }
+  /* tiny safety nudge so the lines never push width */
+  .balanced { font-size: clamp(15px, 3.9vw, 18px); }
+}
+
+/* Optional extra safety: never let long words force overflow */
+.bubble p { overflow-wrap: anywhere; word-break: normal; }
 
 /* Tiny, graceful type flex on narrow phones so lines never overflow */
 @media (max-width: 420px){
