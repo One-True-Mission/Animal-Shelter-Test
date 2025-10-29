@@ -22,7 +22,7 @@
 
   <!-- Off-canvas menu + backdrop -->
   <div class="backdrop" data-close></div>
-  <nav id="sidemenu" class="sidemenu" aria-hidden="true">
+  <nav id="sidemenu" class="sidemenu" aria-hidden="true" aria-label="Site">
     <div class="menu-inner">
       <!-- Brand label above the CTA -->
       <div class="menu-header" aria-hidden="true">
@@ -62,6 +62,7 @@
       <div class="cta-group">
         <button id="adoptCta"
                 class="cta has-caret"
+                type="button"
                 aria-haspopup="true"
                 aria-expanded="false"
                 aria-controls="adoptMenu">
@@ -69,7 +70,11 @@
         </button>
 
         <!-- LEVEL 1 MENU -->
-        <div id="adoptMenu" class="cta-menu" role="menu" aria-hidden="true">
+        <div id="adoptMenu"
+             class="cta-menu"
+             role="menu"
+             aria-label="Rescue regions"
+             aria-hidden="true">
           <!-- Dallas / Fort Worth group toggle -->
           <button id="dfwToggle"
                   type="button"
@@ -81,7 +86,11 @@
           </button>
 
           <!-- LEVEL 2 SUBMENU: DFW cities -->
-          <div id="dfwMenu" class="cta-submenu" role="menu" aria-hidden="true">
+          <div id="dfwMenu"
+               class="cta-submenu"
+               role="menu"
+               aria-label="DFW cities"
+               aria-hidden="true">
             <a class="cta-subitem" role="menuitem" href="https://www.arlingtontx.gov/City-Services/Animals-Pets/Adoptable-Animals" target="_blank" rel="noopener">Arlington</a>
             <a class="cta-subitem" role="menuitem" href="https://bedallas90.org/home/pets/" target="_blank" rel="noopener">Dallas</a>
             <a class="cta-subitem" role="menuitem" href="https://www.petfinder.com/search/pets-for-adoption/?shelter_id%5B0%5D=TX265&sort%5B0%5D=recently_added" target="_blank" rel="noopener">Euless</a>
@@ -97,9 +106,9 @@
           </div>
 
           <!-- Future regions (disabled placeholders) -->
-          <button type="button" class="cta-item disabled" title="Coming soon">Austin (coming soon)</button>
-          <button type="button" class="cta-item disabled" title="Coming soon">San Antonio (coming soon)</button>
-          <button type="button" class="cta-item disabled" title="Coming soon">Houston (coming soon)</button>
+          <button type="button" class="cta-item disabled" title="Coming soon" aria-disabled="true">Austin (coming soon)</button>
+          <button type="button" class="cta-item disabled" title="Coming soon" aria-disabled="true">San Antonio (coming soon)</button>
+          <button type="button" class="cta-item disabled" title="Coming soon" aria-disabled="true">Houston (coming soon)</button>
         </div>
       </div>
     </header>
