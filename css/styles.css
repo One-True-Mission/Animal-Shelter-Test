@@ -25,6 +25,9 @@
   --bg-url: url("../assets/puppies-hero.jpg");
   --bg-pos: 50% 72%;
   --bg-fit: cover;
+
+  /* base page gutter */
+  --gutter: 18px;
 }
 
 * { box-sizing: border-box; }
@@ -43,6 +46,7 @@ body {
   overscroll-behavior-y: none;
   touch-action: pan-y;              /* allow vertical panning only */
   -webkit-text-size-adjust: 100%;
+  scrollbar-gutter: stable both-edges; /* keep left/right gutters symmetric */
 }
 
 /* ===== Fixed background ===== */
@@ -484,8 +488,7 @@ body {
 /* Keep very last line intact if ever needed */
 .no-widow{ white-space: nowrap; }
 
-/* ---------- FINAL MOBILE CENTERING FIX ---------- */
-
+/* ---------- FINAL MOBILE CENTERING & SAFE-AREA FIX ---------- */
 /* Ensure key blocks are truly centered & contained */
 .wrap,
 .hero,
@@ -504,10 +507,21 @@ body {
   margin-right: auto;
 }
 
+/* Respect iOS/Android safe areas and keep equal visual gutters */
+@supports (padding-left: max(0px)) {
+  .hero,
+  .bubble,
+  .site-footer{
+    padding-left: max(var(--gutter), env(safe-area-inset-left));
+    padding-right: max(var(--gutter), env(safe-area-inset-right));
+  }
+}
+
 /* Extra safety on narrow phones to avoid any width creep */
 @media (max-width: 600px){
   .hero,
-  .bubble{ padding-left: 18px; padding-right: 18px; }
+  .bubble{ padding-left: max(var(--gutter), env(safe-area-inset-left));
+           padding-right: max(var(--gutter), env(safe-area-inset-right)); }
 
   .bg, .shade{
     left: 0; right: 0;
