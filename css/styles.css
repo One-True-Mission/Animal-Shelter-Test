@@ -27,7 +27,7 @@
   --bg-fit: cover;
 
   /* Dropdown optical tweak (positive = nudge to the right) */
-  --cta-shift-x: 28px; /* increased to center content even with scrollbar */
+  --cta-shift-x: 54px; /* increased to center content even with scrollbar */
 }
 
 * { box-sizing: border-box; }
