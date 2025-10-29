@@ -442,3 +442,30 @@ body {
 @media (min-aspect-ratio: 21/9) {
   :root { --bg-pos: 50% 68%; --bg-fit: 110% auto; }
 }
+
+/* ---------- Centered, balanced copy (Option B) ---------- */
+.bubble h2{
+  text-wrap: balance;           /* nicer, even heading wrap on mobile */
+}
+
+.bubble p{
+  text-align: center;
+  line-height: 1.65;
+  letter-spacing: 0.1px;
+  hyphens: none;
+  text-wrap: pretty;            /* reduces awkward widows/orphans */
+}
+
+/* Keep measure short on phones for symmetry; roomier on larger screens */
+@media (max-width: 720px){
+  .bubble p{ max-width: 42ch; } /* narrower for cleaner centering on mobile */
+}
+@media (min-width: 721px){
+  .bubble p{ max-width: 60ch; }
+}
+
+/* Vertical rhythm between paragraphs */
+.bubble p + p{ margin-top: 14px; }
+
+/* Prevent the very last word(s) from breaking to a new line */
+.no-widow{ white-space: nowrap; }
