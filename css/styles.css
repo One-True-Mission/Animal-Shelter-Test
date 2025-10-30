@@ -447,15 +447,25 @@ body {
    PAGE-SCOPED: Happy Homes
    ========================= */
 .page-happy-homes .hero{
-  padding-bottom: 6vh; /* slightly tighter hero */
+  /* title up near the menu; tighter bottom so Start Here tucks under */
+  padding: clamp(56px, 10vh, 90px) var(--pad) 3vh;
+}
+.page-happy-homes .hero h1{
+  margin-bottom: 8px;
+}
+.page-happy-homes .tagline{
+  display: none; /* subtitle removed */
 }
 
+/* Bubbles:
+   - First bubble sits right under the title
+   - All subsequent bubbles drop back down to show background */
 .page-happy-homes .bubble{
-  margin-top: 18px; /* much closer bubbles */
+  margin-top: 36vh;            /* restore “feet-level” gap for the rest */
   padding: 20px 18px 16px;
 }
 .page-happy-homes .bubble:first-of-type{
-  margin-top: 6vh; /* reasonable gap from hero */
+  margin-top: 8px;             /* “Start Here” right under the header */
 }
 
 /* Grid of resource cards: 1 col mobile → 2 cols ≥720px */
@@ -481,7 +491,6 @@ body {
   padding: 14px;
   box-shadow: 0 10px 24px rgba(0,0,0,.24) inset, 0 8px 26px rgba(0,0,0,.22);
 }
-
 .page-happy-homes .btn-resource{
   display: block;
   width: 100%;
@@ -505,7 +514,6 @@ body {
   outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
-
 .page-happy-homes .explain{
   margin: 10px 6px 2px;
   font-size: 14px;
@@ -517,5 +525,5 @@ body {
 /* Remove default UL styling if any remain */
 .page-happy-homes .highlights{ list-style: none; padding: 0; margin: 0; }
 
-/* Ensure dropdown is gone here even if markup sneaks in */
+/* Keep any dropdown hidden here just in case */
 .page-happy-homes #adoptMenu{ display: none !important; }
